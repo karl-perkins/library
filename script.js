@@ -35,3 +35,24 @@ addBookToLibrary('1984', 'George Orwell', 352, 'No');
 addBookToLibrary('Pride and Prejudice', 'Jane Austen', 384, 'No');
 
 myLibrary.forEach((book) => insertBookRow(book));
+
+const dialog = document.querySelector('dialog');
+const showButton = document.querySelector('dialog + button');
+
+showButton.addEventListener('click', () => {
+	dialog.showModal();
+});
+
+const form = document.querySelector('#form');
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+	const formData = new FormData(form);
+
+	addBookToLibrary(formData.get('title'), formData.get('author'), formData.get('pages'), formData.get('read'));
+	insertBookRow(myLibrary.at(-1));
+
+	form.reset();
+	dialog.close();
+});
