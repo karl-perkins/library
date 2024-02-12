@@ -20,10 +20,10 @@ function displayBooks() {
 		const bookRow = libraryData.insertRow();
 		bookRow.dataset.indexNumber = idx;
 		
-		const titleCell = bookRow.insertCell(0);
-		const authorCell = bookRow.insertCell(1);
-		const pagesCell = bookRow.insertCell(2);
-		const readCell = bookRow.insertCell(3);
+		bookRow.insertCell(0).textContent = book.title;
+		bookRow.insertCell(1).textContent = book.author;
+		bookRow.insertCell(2).textContent = book.pages;
+		bookRow.insertCell(3).textContent = book.read;
 		
 		const deleteButton = document.createElement('button');
 		deleteButton.classList.add('delete-button');
@@ -34,11 +34,6 @@ function displayBooks() {
 				myLibrary.splice(parentRowIndex, 1);
 				displayBooks();
 		});
-	
-		titleCell.textContent = book.title;
-		authorCell.textContent = book.author;
-		pagesCell.textContent = book.pages;
-		readCell.textContent = book.read;
 		bookRow.appendChild(deleteButton);
 	});
 }
