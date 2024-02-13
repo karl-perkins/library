@@ -8,6 +8,14 @@ function Book(title, author, pages, read) {
 	this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+	if (this.read === 'No') {
+		this.read = 'Yes';
+	} else {
+		this.read = 'No';
+	}
+}
+
 function addBookToLibrary(title, author, pages, read) {
 	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
@@ -35,6 +43,17 @@ function displayBooks() {
 				displayBooks();
 		});
 		bookRow.appendChild(deleteButton);
+
+		const toggleReadButton = document.createElement('button');
+		toggleReadButton.classList.add('toggle-button');
+		toggleReadButton.textContent = 'Read';
+		toggleReadButton.addEventListener('click', (e) => {
+			const parentRow = e.target.closest('tr');
+			const parentRowIndex = parentRow.getAttribute('data-index-number');
+			myLibrary[parentRowIndex].toggleRead();
+			displayBooks();
+		});
+		bookRow.appendChild(toggleReadButton);
 	});
 }
 
