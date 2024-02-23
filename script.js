@@ -1,18 +1,20 @@
 const myLibrary = [];
 const libraryData = document.querySelector('#library-data');
 
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
 
-Book.prototype.toggleRead = function() {
-	if (this.read === 'No') {
-		this.read = 'Yes';
-	} else {
-		this.read = 'No';
+	toggleRead() {
+		if (this.read === 'No') {
+			this.read = 'Yes';
+		} else {
+			this.read = 'No';
+		}
 	}
 }
 
